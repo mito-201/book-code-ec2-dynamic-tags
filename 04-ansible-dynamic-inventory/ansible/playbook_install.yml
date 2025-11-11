@@ -1,0 +1,19 @@
+---
+- name: Install Git and Verify Version
+  hosts: role__app # ansible-inventory の結果（role_app）に合わせる
+  become: true # dnf の実行に管理者権限(sudo)が必要
+
+  tasks:
+    - name:  Git is installed (latest version)
+      ansible.builtin.dnf:
+        name: git
+        state: latest # 最新バージョンをインストール
+
+    - name: Execute git --version command
+      ansible.builtin.command:
+        cmd: "git --version"
+      register: git_version_output
+
+    - name: Display Git version
+      ansible.builtin.debug:
+        msg: "Git version : {{ git_version_output.stdout }}"

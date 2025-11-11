@@ -1,0 +1,31 @@
+# inventory/aws_ec2.yml
+# aws_ec2 プラグインを使用することを宣言
+plugin: aws_ec2
+
+# どのリージョンをスキャン対象にするか
+regions:
+  - us-west-2 # サンプル環境と同じリージョンを指定してください
+
+# 認証情報の設定 (省略可能)
+# 省略した場合、環境変数 (AWS_PROFILEなど) やEC2インスタンスプロファイルが使用されます。
+profile: default
+
+# SSM接続を行うため、インスタンスIDを表示する
+hostnames:
+  - instance-id
+
+# フィルタ条件
+filters:
+  # 'Environment' タグが 'dev' のものだけを対象にする
+  tag:Environment: dev
+  # インスタンスの状態が 'running' のものだけ
+  instance-state-name: running
+
+# タグでグループ化する
+keyed_groups:
+  # 'Role' タグの値でグループ化する (例: 'role_app', 'role_web')
+  - key: tags.Role
+    prefix: role_
+  # 'Environment' タグの値でグループ化する (例: 'env_dev')
+  - key: tags.Environment
+    prefix: env_

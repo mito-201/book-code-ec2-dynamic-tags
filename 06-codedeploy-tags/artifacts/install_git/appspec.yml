@@ -1,0 +1,25 @@
+version: 0.0
+os: linux
+files:
+  - source: ./
+    destination: /tmp/install_git
+file_exists_behavior: OVERWRITE
+permissions:
+  - object: /tmp/install_git
+    pattern: "*.sh"
+    mode: 755
+    owner: root
+    group: root
+hooks:
+  BeforeInstall:
+    - location: version_git.sh
+      timeout: 10
+      runas: root
+  AfterInstall:
+    - location: install_git.sh
+      timeout: 10
+      runas: root
+  ValidateService:
+    - location: version_git.sh
+      timeout: 10
+      runas: root

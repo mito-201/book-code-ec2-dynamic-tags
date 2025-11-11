@@ -1,0 +1,21 @@
+---
+- name: Downgrade Git on target hosts
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Git is installed
+      ansible.builtin.dnf:
+        name: git-2.39.2-1.amzn2023.0.1
+        state: present
+        # 'downgrade' を許可する
+        allow_downgrade: yes
+
+    - name: Execute git --version command
+      ansible.builtin.command:
+        cmd: "git --version"
+      register: git_version_output
+
+    - name: Display Git version
+      ansible.builtin.debug:
+        msg: "Git version : {{ git_version_output.stdout }}"
