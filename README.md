@@ -31,9 +31,10 @@
 
 コードは、書籍の章に対応するディレクトリに格納されています。
 
-* `01-base-infra/terraform/`: 第1章 サンプルAWS環境構築用Terraformコード
-* `02-ansible-automation/ansible/`: 第2章 Ansible Playbook、インベントリファイル、設定ファイル
-* `03-codepipeline-automation/`: 第3章 CodePipeline/CodeDeploy関連Terraformコード、`appspec.yml`、運用スクリプト
+* `01-setup-sample-env`: 第1章 サンプルAWS環境構築用Terraformコード
+* `04-ansible-dynamic-inventory/ansible`: 第4章 Ansible：タグでEC2 を識別する
+* `05-ssm-run-command`: 第5章 SSM Run Command：タグでEC2 を識別する
+* `06-codedeploy-tags`: 第6章 CodeDeploy：タグでEC2 を識別する
 
 ## 🚀 使い方
 
