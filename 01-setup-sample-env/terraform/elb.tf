@@ -12,11 +12,12 @@ resource "aws_lb" "main" {
 
 # ターゲットグループ
 resource "aws_lb_target_group" "app_http" {
-  name        = "${var.global.name_prefix}-tg-app"
-  port        = 80     # ターゲットインスタンスのポート
-  protocol    = "HTTP" # ALBからターゲットへのプロトコル
-  vpc_id      = aws_vpc.main.id
-  target_type = "instance"
+  name                 = "${var.global.name_prefix}-tg-app"
+  port                 = 80     # ターゲットインスタンスのポート
+  protocol             = "HTTP" # ALBからターゲットへのプロトコル
+  vpc_id               = aws_vpc.main.id
+  target_type          = "instance"
+  deregistration_delay = 10
 
   health_check {
     enabled             = true
