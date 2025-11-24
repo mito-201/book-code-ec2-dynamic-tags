@@ -30,11 +30,9 @@ resource "aws_iam_policy" "codepipeline_permissions_policy" {
       {
         Effect = "Allow",
         Action = [
-          "s3:GetObject",
-          "s3:GetObjectVersion",
-          "s3:GetBucketVersioning",
-          "s3:PutObjectAcl",
-          "s3:PutObject"
+          "s3:Put*",
+          "s3:List*",
+          "s3:Get*",
         ],
         Resource = [
           # アーティファクトストア用S3バケットのARNと、その中のオブジェクト
